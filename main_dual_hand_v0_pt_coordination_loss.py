@@ -344,7 +344,7 @@ class DualHandTrainer:
                 
                 # Add new transition loss, improved version
                 action_transition_loss = self.coordination_loss.action_transition_loss(
-                    lh_encoder_out, rh_encoder_out, lh_label, rh_label, weight=0.03)
+                    lh_encoder_out, rh_encoder_out, lh_label, rh_label, weight=coord_weights[5])
                 
                 # Add coordination losses to total loss, improved version
                 coordination_total = (temporal_sync_loss + cross_consistency_loss + 
@@ -646,8 +646,8 @@ if __name__ == '__main__':
 
     parser.add_argument('--config', type=str)
     parser.add_argument('--device', type=int)
-    parser.add_argument('--coordination_weights', type=float, nargs=5, 
-                       default=[0.1, 0.08, 0.06, 0.05, 0.1],
+    parser.add_argument('--coordination_weights', type=float, nargs=6, 
+                       default=[0.1, 0.08, 0.06, 0.05, 0.1, 0.03],
                        help='Weights for coordination losses: [temporal_sync, cross_consistency, boundary_sync, action_coherence, semantic]')
     args = parser.parse_args()
     view_id = "View0"
@@ -667,6 +667,7 @@ if __name__ == '__main__':
     print(f"  - Boundary Sync: {args.coordination_weights[2]}")
     print(f"  - Action Coherence: {args.coordination_weights[3]}")
     print(f"  - Semantic Coordination: {args.coordination_weights[4]}")
+    print(f"  - Action Transition: {args.coordination_weights[5]}")
 
     if args.device != -1:
         os.environ['CUDA_VISIBLE_DEVICES'] = str(args.device)
