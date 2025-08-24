@@ -1,0 +1,8 @@
+{
+  "video_dir": "./test_videos",
+  "lh_annotation_dir": "./test_annotations/lh",
+  "rh_annotation_dir": "./test_annotations/rh",
+  "model_size": "base",
+  "batch_size": 4,
+  "num_epochs": 10
+}

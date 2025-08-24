@@ -1,0 +1,70 @@
+{
+  "root_data_dir": "../data",
+  "dataset_name": "havid",
+  "split_id": 1,
+  "naming": "HAVID-Hierarchical-v0_pt",
+  "sample_rate": 1,
+  "temporal_aug": true,
+  "encoder_params": {
+    "use_instance_norm": true,
+    "num_layers": 10,
+    "num_f_maps": 256,
+    "input_dim": 2048,
+    "kernel_size": 3,
+    "normal_dropout_rate": 0.3,
+    "channel_dropout_rate": 0.3,
+    "temporal_dropout_rate": 0.3,
+    "feature_layer_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      -1,
+      -2
+    ]
+  },
+  "decoder_params": {
+    "num_layers": 10,
+    "num_f_maps": 128,
+    "time_emb_dim": 512,
+    "kernel_size": 3,
+    "dropout_rate": 0.3
+  },
+  "diffusion_params": {
+    "timesteps": 1000,
+    "sampling_timesteps": 5,
+    "ddim_sampling_eta": 1,
+    "snr_scale": 0.5,
+    "cond_types": [
+      "full",
+      "zero",
+      "boundary05-",
+      "segment=1"
+    ],
+    "detach_decoder": false
+  },
+  "loss_weights": {
+    "encoder_ce_loss": 0.5,
+    "encoder_mse_loss": 0.025,
+    "encoder_boundary_loss": 0.0,
+    "decoder_ce_loss": 0.5,
+    "decoder_mse_loss": 0.025,
+    "decoder_boundary_loss": 0.1
+  },
+  "batch_size": 1,
+  "learning_rate": 0.0002,
+  "weight_decay": 1e-05,
+  "num_epochs": 50,
+  "log_freq": 5,
+  "class_weighting": false,
+  "set_sampling_seed": true,
+  "boundary_smooth": 5,
+  "soft_label": null,
+  "log_train_results": true,
+  "postprocess": {
+    "type": "median",
+    "value": 3
+  }
+}

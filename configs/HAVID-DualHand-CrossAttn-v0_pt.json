@@ -1,0 +1,71 @@
+{
+  "root_data_dir": "../data",
+  "dataset_name": "HAVID",
+  "split_id": 1,
+  "naming": "HAVID-DualHand-CrossAttn-v0_pt",
+  "result_dir": "./results",
+  "num_epochs": 80,
+  "batch_size": 1,
+  "learning_rate": 0.0005,
+  "weight_decay": 1e-05,
+  "log_freq": 10,
+  "log_train_results": true,
+  "sample_rate": 1,
+  "temporal_aug": true,
+  "boundary_smooth": 5,
+  "class_weighting": true,
+  "soft_label": null,
+  "set_sampling_seed": true,
+  "encoder_params": {
+    "num_layers": 10,
+    "num_f_maps": 256,
+    "input_dim": 2048,
+    "kernel_size": 3,
+    "normal_dropout_rate": 0.3,
+    "channel_dropout_rate": 0.3,
+    "temporal_dropout_rate": 0.3,
+    "feature_layer_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      -1,
+      -2
+    ],
+    "use_instance_norm": true
+  },
+  "decoder_params": {
+    "num_layers": 10,
+    "num_f_maps": 128,
+    "time_emb_dim": 512,
+    "kernel_size": 3,
+    "dropout_rate": 0.3
+  },
+  "diffusion_params": {
+    "timesteps": 1000,
+    "sampling_timesteps": 5,
+    "ddim_sampling_eta": 1,
+    "snr_scale": 0.5,
+    "detach_decoder": false,
+    "cond_types": [
+      "full",
+      "zero",
+      "boundary05-",
+      "segment=1"
+    ]
+  },
+  "loss_weights": {
+    "encoder_ce_loss": 0.5,
+    "encoder_mse_loss": 0.025,
+    "encoder_boundary_loss": 0.0,
+    "decoder_ce_loss": 0.5,
+    "decoder_mse_loss": 0.025,
+    "decoder_boundary_loss": 0.1
+  },
+  "postprocess": {
+    "type": "median",
+    "value": 3
+  }
+}

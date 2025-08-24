@@ -1,0 +1,19 @@
+{
+  "video_dir": "../data/havid/videos/view1",
+  "lh_annotation_dir": "../data/havid/groundTruth/View1/lh_pt",
+  "rh_annotation_dir": "../data/havid/groundTruth/View1/rh_pt",
+  "clip_len": 16,
+  "frame_sample_rate": 4,
+  "batch_size": 4,
+  "num_workers": 2,
+  "model_size": "base",
+  "pretrained_path": null,
+  "freeze_backbone": false,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0001,
+  "num_epochs": 20,
+  "use_class_weights": true,
+  "save_freq": 5,
+  "save_dir": "./checkpoints/uniformer_simplified",
+  "log_dir": "./logs/uniformer_simplified"
+}
